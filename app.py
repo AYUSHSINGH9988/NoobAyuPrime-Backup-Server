@@ -3,22 +3,18 @@ from flask import Flask, request, send_from_directory, jsonify
 
 app = Flask(__name__)
 
-# 🟢 THE HACK: Har cloud server '/tmp' folder me write permission deta hai
 BACKUP_DIR = "/tmp/backup_vault"
 os.makedirs(BACKUP_DIR, exist_ok=True)
 
-# 🔐 SECURITY
-SECRET_KEY = "ayuprime_god_mode_123"
+SECRET_KEY = "modih"
 
 def is_authorized(req):
     return req.headers.get("x-api-key") == SECRET_KEY
 
-# Home Route
 @app.route('/', methods=['GET'])
 def home():
     return "✅ Ayuprime Backup Vault is Online (Running from /tmp)!", 200
 
-# 🟢 Dedicated Health/Ping Endpoint uptimer ke liye
 @app.route('/health', methods=['GET'])
 def health_check():
     return jsonify({
